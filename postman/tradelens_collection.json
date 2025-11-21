@@ -1,0 +1,95 @@
+{
+    "info": {
+      "name": "TradeLens API Collection",
+      "_postman_id": "c5b1f244-4b57-4eb5-aadc-8f1a21234567",
+      "description": "Postman API collection for the TradeLens backend",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Create User",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"email\": \"demo@rutgers.edu\",\n    \"risk_tolerance\": \"medium\",\n    \"horizon_years\": 2\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/user/create",
+            "host": ["{{base_url}}"],
+            "path": ["user", "create"]
+          }
+        }
+      },
+      {
+        "name": "Create Portfolio",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"user_id\": 1,\n    \"name\": \"My Test Portfolio\"\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/portfolio/create",
+            "host": ["{{base_url}}"],
+            "path": ["portfolio", "create"]
+          }
+        }
+      },
+      {
+        "name": "Add Ticker to Portfolio",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"portfolio_id\": 1,\n    \"symbol\": \"AAPL\",\n    \"weight\": 0.25\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/portfolio/add_ticker",
+            "host": ["{{base_url}}"],
+            "path": ["portfolio", "add_ticker"]
+          }
+        }
+      },
+      {
+        "name": "Get Portfolio Details",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "{{base_url}}/portfolio/1",
+            "host": ["{{base_url}}"],
+            "path": ["portfolio", "1"]
+          }
+        }
+      },
+      {
+        "name": "Generate Signals",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"symbols\": [\"AAPL\", \"TSLA\", \"MSFT\"]\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/signals/generate",
+            "host": ["{{base_url}}"],
+            "path": ["signals", "generate"]
+          }
+        }
+      }
+    ]
+  }
+  
