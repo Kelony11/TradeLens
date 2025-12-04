@@ -23,7 +23,8 @@ This backend is fully API-driven, supports JSON input/output, and includes live 
     - Uses yfinance + pandas to generate signals based on SMA crossover:
 
     ``` 
-    Indicator	            Logic
+    Indicator               Logic
+
     BUY 📈	                SMA20 > SMA50
     SELL 📉	                SMA20 < SMA50
     HOLD 🟡	                Otherwise
