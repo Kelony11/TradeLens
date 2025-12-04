@@ -40,8 +40,10 @@ This backend is fully API-driven, supports JSON input/output, and includes live 
    - Tools Used: Postman, SwaggerUI, Python Virtualenv
 
 # HOW TO RUN LOCALLY 🚀 
-1. clone the repo
-2. cd backend
+1. Clone the repo
+2. ```
+    cd backend
+    ```
 3. Create & activate virtual environment
     - python3 -m venv venv
     - source venv/bin/activate
