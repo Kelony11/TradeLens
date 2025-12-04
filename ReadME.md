@@ -55,7 +55,7 @@ This backend is fully API-driven, supports JSON input/output, and includes live 
     - uvicorn app.main:app --reload
 
 # SECURITY & ENV SETUP 🔒 
-    Never push credentials — add to .gitignore
+   - Never push credentials — add to .gitignore
     ``` 
     app/credentials/firebase-key.json
     *.env
