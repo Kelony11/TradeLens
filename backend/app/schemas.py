@@ -1,9 +1,8 @@
+# app/schemas.py
 from typing import List, Optional
 from pydantic import BaseModel
 
-# --------------------------
-# User Schemas
-# --------------------------
+# ---------- Users ----------
 
 class UserCreate(BaseModel):
     email: Optional[str] = None
@@ -12,64 +11,47 @@ class UserCreate(BaseModel):
 
 
 class UserOut(BaseModel):
-    user_id: int
+    user_id: str           # <- was int
     email: Optional[str]
     risk_tolerance: str
     horizon_years: int
 
-    class Config:
-        orm_mode = True
 
-
-# --------------------------
-# Portfolio Schemas
-# --------------------------
+# ---------- Portfolios ----------
 
 class PortfolioCreate(BaseModel):
-    user_id: int
+    user_id: str           # <- was int
     name: str
 
 
 class PortfolioOut(BaseModel):
-    portfolio_id: int
-    user_id: int
+    portfolio_id: str      # <- was int
+    user_id: str           # <- was int
     name: str
 
-    class Config:
-        orm_mode = True
 
-
-# --------------------------
-# Ticker Schemas
-# --------------------------
+# ---------- Tickers ----------
 
 class TickerAdd(BaseModel):
-    portfolio_id: int
+    portfolio_id: str      # <- was int
     symbol: str
     weight: float
 
 
 class PortfolioTickerOut(BaseModel):
+    ticker_id: str         # new field if you want the id
     symbol: str
     weight: float
 
-    class Config:
-        orm_mode = True
-
 
 class PortfolioDetailOut(BaseModel):
-    portfolio_id: int
-    user_id: int
+    portfolio_id: str
+    user_id: str
     name: str
     tickers: List[PortfolioTickerOut]
 
-    class Config:
-        orm_mode = True
 
-
-# --------------------------
-# Signal Engine Schemas
-# --------------------------
+# ---------- Signals ----------
 
 class SignalRequest(BaseModel):
     symbols: List[str]

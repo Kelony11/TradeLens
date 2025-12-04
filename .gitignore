@@ -1,0 +1,17 @@
+venv/
+__pycache__/
+*.pyc
+.env
+*.sqlite3
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
+# Env files
+backend/.env
+
+# Firebase credentials
+backend/app/credentials/firebase-key.json
+backend/app/credentials/*

@@ -1,28 +1,15 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from google.cloud.firestore import Client
 from .database import get_db
-from . import schemas, crud
+from . import crud, schemas
 
-router = APIRouter(
-    prefix="/user",
-    tags=["Users"]
-)
-
-
-# --------------------------
-# Create a New User
-# --------------------------
+router = APIRouter(prefix="/user", tags=["Users"])
 
 @router.post("/create", response_model=schemas.UserOut)
-def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
-    """
-    Creates a new TradeLens user with email, risk tolerance,
-    and investment horizon.
-    """
-    
-    # If email was provided, check for duplicates
+def create_user(user: schemas.UserCreate, db: Client = Depends(get_db)):
+    # Check duplicate email
     if user.email:
-        existing = db.query(crud.models.User).filter(crud.models.User.email == user.email).first()
+        existing = crud.get_user_by_email(db, user.email)
         if existing:
             raise HTTPException(status_code=400, detail="Email already exists")
 

@@ -1,4 +1,6 @@
-#!/Users/sathyagopinath/Desktop/PF-TradeLens/venv/bin/python
+#!/bin/sh
+'''exec' "/Users/kelony/Desktop/P. Finance projects/PF-TradeLens/venv/bin/python3.11" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys

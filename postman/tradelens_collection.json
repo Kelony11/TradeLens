@@ -1,95 +1,132 @@
 {
-    "info": {
-      "name": "TradeLens API Collection",
-      "_postman_id": "c5b1f244-4b57-4eb5-aadc-8f1a21234567",
-      "description": "Postman API collection for the TradeLens backend",
-      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  "info": {
+    "_postman_id": "11111111-2222-3333-4444-firestore-pf",
+    "name": "PF-TradeLens (Firestore)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/user/create",
+              "host": ["{{base_url}}"],
+              "path": ["user", "create"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"kelvin@example.com\",\n  \"risk_tolerance\": \"medium\",\n  \"horizon_years\": 10\n}"
+            }
+          },
+          "response": []
+        }
+      ]
     },
-    "item": [
-      {
-        "name": "Create User",
-        "request": {
-          "method": "POST",
-          "header": [
-            { "key": "Content-Type", "value": "application/json" }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n    \"email\": \"demo@rutgers.edu\",\n    \"risk_tolerance\": \"medium\",\n    \"horizon_years\": 2\n}"
+    {
+      "name": "Portfolios",
+      "item": [
+        {
+          "name": "Create Portfolio",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/portfolio/create",
+              "host": ["{{base_url}}"],
+              "path": ["portfolio", "create"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<PUT_USER_ID_HERE>\",\n  \"name\": \"My First Portfolio\"\n}"
+            }
           },
-          "url": {
-            "raw": "{{base_url}}/user/create",
-            "host": ["{{base_url}}"],
-            "path": ["user", "create"]
-          }
-        }
-      },
-      {
-        "name": "Create Portfolio",
-        "request": {
-          "method": "POST",
-          "header": [
-            { "key": "Content-Type", "value": "application/json" }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n    \"user_id\": 1,\n    \"name\": \"My Test Portfolio\"\n}"
+          "response": []
+        },
+        {
+          "name": "Add Ticker to Portfolio",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/portfolio/add_ticker",
+              "host": ["{{base_url}}"],
+              "path": ["portfolio", "add_ticker"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"portfolio_id\": \"<PUT_PORTFOLIO_ID_HERE>\",\n  \"symbol\": \"AAPL\",\n  \"weight\": 0.5\n}"
+            }
           },
-          "url": {
-            "raw": "{{base_url}}/portfolio/create",
-            "host": ["{{base_url}}"],
-            "path": ["portfolio", "create"]
-          }
-        }
-      },
-      {
-        "name": "Add Ticker to Portfolio",
-        "request": {
-          "method": "POST",
-          "header": [
-            { "key": "Content-Type", "value": "application/json" }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n    \"portfolio_id\": 1,\n    \"symbol\": \"AAPL\",\n    \"weight\": 0.25\n}"
+          "response": []
+        },
+        {
+          "name": "Get Portfolio (with tickers)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/portfolio/{{portfolio_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["portfolio", "{{portfolio_id}}"]
+            }
           },
-          "url": {
-            "raw": "{{base_url}}/portfolio/add_ticker",
-            "host": ["{{base_url}}"],
-            "path": ["portfolio", "add_ticker"]
-          }
+          "response": []
         }
-      },
-      {
-        "name": "Get Portfolio Details",
-        "request": {
-          "method": "GET",
-          "header": [],
-          "url": {
-            "raw": "{{base_url}}/portfolio/1",
-            "host": ["{{base_url}}"],
-            "path": ["portfolio", "1"]
-          }
-        }
-      },
-      {
-        "name": "Generate Signals",
-        "request": {
-          "method": "POST",
-          "header": [
-            { "key": "Content-Type", "value": "application/json" }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n    \"symbols\": [\"AAPL\", \"TSLA\", \"MSFT\"]\n}"
+      ]
+    },
+    {
+      "name": "Signals",
+      "item": [
+        {
+          "name": "Generate Signals",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/signals/generate",
+              "host": ["{{base_url}}"],
+              "path": ["signals", "generate"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbols\": [\"AAPL\", \"MSFT\", \"TSLA\"]\n}"
+            }
           },
-          "url": {
-            "raw": "{{base_url}}/signals/generate",
-            "host": ["{{base_url}}"],
-            "path": ["signals", "generate"]
-          }
+          "response": []
         }
-      }
-    ]
-  }
-  
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "portfolio_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
