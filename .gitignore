@@ -1,7 +1,7 @@
 venv/
 __pycache__/
 *.pyc
-.env
+
 *.sqlite3
 .idea/
 .vscode/
@@ -15,3 +15,8 @@ backend/.env
 # Firebase credentials
 backend/app/credentials/firebase-key.json
 backend/app/credentials/*
+
+# Hide env files
+.env
+.env.local
+.env.*
